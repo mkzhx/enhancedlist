@@ -42,7 +42,27 @@ describe('browser.tinymce.plugins.enhancedlist.StyleTest', () => {
     await pSetEnhancedList(editor, 'upper-roman', '0px', 'ancestor');
     TinyAssertions.assertContent(
       editor,
-      '<ol style="list-style-type: upper-roman;">\n<li>List1</li>\n<li>List1\n<ol style="list-style-type: upper-roman;">\n<li>List2</li>\n<li>List2\n<ol style="list-style-type: upper-roman;">\n<li>List3</li>\n<li>List3\n<ul style="list-style-type: circle;">\n<li>List4</li>\n<li>List4</li>\n</ul>\n</li>\n</ol>\n</li>\n</ol>\n</li>\n</ol>'
+      [
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List1</li>',
+        '<li>List1',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List2</li>',
+        '<li>List2',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List3</li>',
+        '<li>List3',
+        '<ul style="list-style-type: circle;">',
+        '<li>List4</li>',
+        '<li>List4</li>',
+        '</ul>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ol>'
+      ].join('\n')
     );
   });
 
@@ -53,7 +73,27 @@ describe('browser.tinymce.plugins.enhancedlist.StyleTest', () => {
     await pSetEnhancedList(editor, 'upper-roman', '0px', 'descendant');
     TinyAssertions.assertContent(
       editor,
-      '<ul>\n<li>List1</li>\n<li>List1\n<ol style="list-style-type: upper-roman;">\n<li>List2</li>\n<li>List2\n<ol style="list-style-type: upper-roman;">\n<li>List3</li>\n<li>List3\n<ol style="list-style-type: upper-roman;">\n<li>List4</li>\n<li>List4</li>\n</ol>\n</li>\n</ol>\n</li>\n</ol>\n</li>\n</ul>'
+      [
+        '<ul>',
+        '<li>List1</li>',
+        '<li>List1',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List2</li>',
+        '<li>List2',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List3</li>',
+        '<li>List3',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List4</li>',
+        '<li>List4</li>',
+        '</ol>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ul>'
+      ].join('\n')
     );
   });
 });

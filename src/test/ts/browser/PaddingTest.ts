@@ -68,7 +68,27 @@ describe('browser.tinymce.plugins.enhancedlist.PaddingTest', () => {
     await pSetEnhancedList(editor, 'disc', '20px', 'ancestor');
     TinyAssertions.assertContent(
       editor,
-      '<ul style="list-style-type: disc;">\n<li style="padding-left: 20px;">List1</li>\n<li style="padding-left: 20px;">List1\n<ul style="list-style-type: disc;">\n<li style="padding-left: 20px;">List2</li>\n<li style="padding-left: 20px;">List2\n<ul style="list-style-type: disc;">\n<li style="padding-left: 20px;">List3</li>\n<li style="padding-left: 20px;">List3\n<ul style="list-style-type: circle;">\n<li>List4</li>\n<li>List4</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>'
+      [
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List1</li>',
+        '<li style="padding-left: 20px;">List1',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List2</li>',
+        '<li style="padding-left: 20px;">List2',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List3</li>',
+        '<li style="padding-left: 20px;">List3',
+        '<ul style="list-style-type: circle;">',
+        '<li>List4</li>',
+        '<li>List4</li>',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>'
+      ].join('\n')
     );
   });
 
@@ -79,7 +99,27 @@ describe('browser.tinymce.plugins.enhancedlist.PaddingTest', () => {
     await pSetEnhancedList(editor, 'disc', '20px', 'descendant');
     TinyAssertions.assertContent(
       editor,
-      '<ul>\n<li>List1</li>\n<li>List1\n<ul style="list-style-type: disc;">\n<li style="padding-left: 20px;">List2</li>\n<li style="padding-left: 20px;">List2\n<ul style="list-style-type: disc;">\n<li style="padding-left: 20px;">List3</li>\n<li style="padding-left: 20px;">List3\n<ul style="list-style-type: disc;">\n<li style="padding-left: 20px;">List4</li>\n<li style="padding-left: 20px;">List4</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>'
+      [
+        '<ul>',
+        '<li>List1</li>',
+        '<li>List1',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List2</li>',
+        '<li style="padding-left: 20px;">List2',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List3</li>',
+        '<li style="padding-left: 20px;">List3',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List4</li>',
+        '<li style="padding-left: 20px;">List4</li>',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>'
+      ].join('\n')
     );
   });
 });
