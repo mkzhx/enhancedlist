@@ -16,10 +16,10 @@ type EnhancedListStyle = typeof enhancedListStyles[number];
 const typeIsEnhancedListStyle = (str: string): boolean =>
   Arr.contains(enhancedListStyles, str);
 
-type ListFormat = {
-  style: EnhancedListStyle;
-  padding: string;
-};
+interface ListFormat {
+  readonly style: EnhancedListStyle;
+  readonly padding: string;
+}
 
 const scopes = ['current', 'ancestor', 'descendant'];
 type Scope = typeof scopes[number];
@@ -33,5 +33,5 @@ export {
   ListElement,
   scopes,
   Scope,
-  typeIsEnhancedListStyle,
+  typeIsEnhancedListStyle
 };
