@@ -12,7 +12,7 @@ const pOpenDialogFromToolbar = async (editor: Editor): Promise<void> => {
   await TinyUiActions.pWaitForDialog(editor, dialogSelector);
 };
 
-const focusListBox = (editor: Editor, fieldName: string): void => {
+const clickListBox = (editor: Editor, fieldName: string): void => {
   TinyUiActions.clickOnUi(editor, getListBoxSelector(fieldName));
 };
 
@@ -56,7 +56,7 @@ const pSelectStyleOption = async (
   editor: Editor,
   listStyle: EnhancedListStyle
 ): Promise<void> => {
-  focusListBox(editor, 'Style');
+  clickListBox(editor, 'Style');
   await pSelectOption(editor, listStyleToTitle(listStyle));
 };
 
@@ -64,7 +64,7 @@ const pSelectScopeOption = async (
   editor: Editor,
   scope: Scope
 ): Promise<void> => {
-  focusListBox(editor, 'Scope');
+  clickListBox(editor, 'Scope');
   await pSelectOption(editor, scopeToTitle(scope));
 };
 
