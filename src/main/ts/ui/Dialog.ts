@@ -10,9 +10,36 @@ import {
 } from '../core/Selection';
 import { EnhancedListStyle, Scope } from '../core/FormatTypes';
 
+interface DialogData {
+  readonly style: EnhancedListStyle;
+  readonly padding: string;
+  readonly scope: Scope;
+}
+
 const openDialog = (editor: Editor): void => {
   const selection = getSelectionStart(editor);
   const selectedList = getList(editor, selection);
+
+  const initialData = {
+    style: Type.isNull(selectedList)
+      ? 'ul'
+      : getStyleFromListElement(editor, selectedList),
+    padding: isLiNode(selection)
+      ? getPaddingFromLIElement(editor, selection)
+      : '0px',
+    scope: 'current'
+  };
+
+  const handleSubmit = (data: DialogData) =>
+    applyListFormat(
+      editor,
+      selectedList,
+      {
+        style: data.style,
+        padding: parsePadding(data.padding)
+      },
+      data.scope
+    );
 
   editor.windowManager.open({
     title: 'Enhanced List',
@@ -52,15 +79,7 @@ const openDialog = (editor: Editor): void => {
         }
       ]
     },
-    initialData: {
-      style: Type.isNull(selectedList)
-        ? 'ul'
-        : getStyleFromListElement(editor, selectedList),
-      padding: isLiNode(selection)
-        ? getPaddingFromLIElement(editor, selection)
-        : '0px',
-      scope: 'current'
-    },
+    initialData: initialData,
     buttons: [
       {
         type: 'cancel',
@@ -75,16 +94,7 @@ const openDialog = (editor: Editor): void => {
       }
     ],
     onSubmit: (api) => {
-      const data = api.getData();
-      applyListFormat(
-        editor,
-        selectedList,
-        {
-          style: data.style as EnhancedListStyle,
-          padding: parsePadding(data.padding)
-        },
-        data.scope as Scope
-      );
+      handleSubmit(api.getData());
       api.close();
     }
   });
