@@ -23,7 +23,7 @@ const isLiNode = (node: Node): node is HTMLLIElement =>
   Type.isNonNullable(node) && node.nodeName === 'LI';
 
 const getDescendantLists = (currList: ListElement): ListElement[] =>
-  getDescendantListsSugar(currList).map((e) => e.dom);
+  Arr.map(getDescendantListsSugar(currList), (e) => e.dom);
 
 const getDescendantListsSugar = (
   currList: ListElement
