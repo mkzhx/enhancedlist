@@ -6,7 +6,7 @@ const editorSetup = (): TinyHooks.Hook<Editor> =>
   TinyHooks.bddSetup(
     {
       plugins: ['enhancedlist', 'lists', 'advlist'],
-      toolbar: 'enhancedlist'
+      toolbar: 'enhancedlist enhancedbullist enhancednumlist'
     },
     [EnhancedList]
   );
