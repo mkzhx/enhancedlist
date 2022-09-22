@@ -21,7 +21,7 @@ interface ListFormat {
   readonly padding: string;
 }
 
-const scopes = ['current', 'ancestor', 'descendant'];
+const scopes = ['current', 'ancestor', 'descendant', 'all'];
 type Scope = typeof scopes[number];
 
 type ListElement = HTMLUListElement | HTMLOListElement;

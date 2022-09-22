@@ -1,19 +1,17 @@
 import { Editor } from 'tinymce';
-import { Arr, Fun, Optional, Type } from '@ephox/katamari';
+import { Type } from '@ephox/katamari';
 import { SugarElement, SelectorFilter } from '@ephox/sugar';
 import {
   EnhancedListStyle,
   ListElement,
   typeIsEnhancedListStyle
 } from './FormatTypes';
+import { getDomElements } from './Utils';
 
 const listNames = ['OL', 'UL'];
 const listSelector = listNames.join(',');
 
-const getList = (
-  editor: Editor,
-  selection: Node
-): HTMLUListElement | HTMLOListElement | null =>
+const getList = (editor: Editor, selection: Node): ListElement | null =>
   editor.dom.getParent(selection, listSelector);
 
 const getSelectionStart = (editor: Editor): Element =>
@@ -22,20 +20,8 @@ const getSelectionStart = (editor: Editor): Element =>
 const isLiNode = (node: Node): node is HTMLLIElement =>
   Type.isNonNullable(node) && node.nodeName === 'LI';
 
-const getDescendantLists = (currList: ListElement): ListElement[] =>
-  Arr.map(getDescendantListsSugar(currList), (e) => e.dom);
-
-const getDescendantListsSugar = (
-  currList: ListElement
-): SugarElement<ListElement>[] =>
-  SelectorFilter.descendants(SugarElement.fromDom(currList), listSelector);
-
-const getLiElementFromList = (list: ListElement): HTMLLIElement | null => {
-  const liElementSugar: Optional<SugarElement<HTMLLIElement>> = Arr.head(
-    SelectorFilter.children(SugarElement.fromDom(list), 'LI')
-  );
-  return liElementSugar.fold(Fun.constant(null), (s) => s.dom);
-};
+const getLiElementsFromList = (list: ListElement): HTMLLIElement[] =>
+  getDomElements(SelectorFilter.children(SugarElement.fromDom(list), 'LI'));
 
 const getPaddingFromLIElement = (
   editor: Editor,
@@ -45,14 +31,7 @@ const getPaddingFromLIElement = (
   return padding === '' ? '0px' : padding;
 };
 
-const getPaddingFromList = (editor: Editor, list: ListElement): string => {
-  const listItem = getLiElementFromList(list);
-  return Type.isNull(listItem)
-    ? '0px'
-    : getPaddingFromLIElement(editor, listItem);
-};
-
-const getStyleFromListElement = (
+const getStyleFromList = (
   editor: Editor,
   list: NonNullable<HTMLUListElement | HTMLOListElement>
 ): EnhancedListStyle => {
@@ -67,10 +46,8 @@ export {
   getList,
   getSelectionStart,
   isLiNode,
-  getDescendantLists,
-  getStyleFromListElement,
-  getDescendantListsSugar,
-  getPaddingFromList,
+  getStyleFromList,
   getPaddingFromLIElement,
+  getLiElementsFromList,
   listSelector
 };

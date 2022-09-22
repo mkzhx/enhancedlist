@@ -96,4 +96,35 @@ describe('browser.tinymce.plugins.enhancedlist.StyleTest', () => {
       ].join('\n')
     );
   });
+
+  it('Test applying list style to all scope', async () => {
+    const editor = hook.editor();
+    editor.setContent(initialContentNested);
+    TinySelections.setCursor(editor, [0, 1, 1, 0], 0);
+    await pSetEnhancedList(editor, 'upper-roman', '0px', 'all');
+    TinyAssertions.assertContent(
+      editor,
+      [
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List1</li>',
+        '<li>List1',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List2</li>',
+        '<li>List2',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List3</li>',
+        '<li>List3',
+        '<ol style="list-style-type: upper-roman;">',
+        '<li>List4</li>',
+        '<li>List4</li>',
+        '</ol>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ol>'
+      ].join('\n')
+    );
+  });
 });

@@ -47,8 +47,9 @@ const scopeToTitle = (scope: Scope): string =>
   ((
     {
       current: 'Current',
-      ancestor: 'Current and all ancestor lists',
-      descendant: 'Current and all descendant lists'
+      ancestor: 'Current + ancestors',
+      descendant: 'Current + descendants',
+      all: 'Current + ancestors + descendants'
     } as { [key: Scope]: string }
   )[scope]);
 

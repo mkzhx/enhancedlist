@@ -122,4 +122,35 @@ describe('browser.tinymce.plugins.enhancedlist.PaddingTest', () => {
       ].join('\n')
     );
   });
+
+  it('Test applying padding to all scope', async () => {
+    const editor = hook.editor();
+    editor.setContent(initialContentNested);
+    TinySelections.setCursor(editor, [0, 1, 1, 0], 0);
+    await pSetEnhancedList(editor, 'disc', '20px', 'all');
+    TinyAssertions.assertContent(
+      editor,
+      [
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List1</li>',
+        '<li style="padding-left: 20px;">List1',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List2</li>',
+        '<li style="padding-left: 20px;">List2',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List3</li>',
+        '<li style="padding-left: 20px;">List3',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List4</li>',
+        '<li style="padding-left: 20px;">List4</li>',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>'
+      ].join('\n')
+    );
+  });
 });

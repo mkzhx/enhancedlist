@@ -1,11 +1,11 @@
 import { Type } from '@ephox/katamari';
 import { Editor } from 'tinymce';
-import { applyListFormat } from '../core/Format';
+import { formatList } from '../core/Format';
 import {
   getList,
   getPaddingFromLIElement,
   getSelectionStart,
-  getStyleFromListElement,
+  getStyleFromList,
   isLiNode
 } from '../core/Selection';
 import { EnhancedListStyle, Scope } from '../core/FormatTypes';
@@ -23,7 +23,7 @@ const openDialog = (editor: Editor): void => {
   const initialData = {
     style: Type.isNull(selectedList)
       ? 'ul'
-      : getStyleFromListElement(editor, selectedList),
+      : getStyleFromList(editor, selectedList),
     padding: isLiNode(selection)
       ? getPaddingFromLIElement(editor, selection)
       : '0px',
@@ -31,7 +31,7 @@ const openDialog = (editor: Editor): void => {
   };
 
   const handleSubmit = (data: DialogData) =>
-    applyListFormat(
+    formatList(
       editor,
       selectedList,
       {
@@ -73,8 +73,9 @@ const openDialog = (editor: Editor): void => {
           label: 'Scope',
           items: [
             { text: 'Current', value: 'current' },
-            { text: 'Current and all ancestor lists', value: 'ancestor' },
-            { text: 'Current and all descendant lists', value: 'descendant' }
+            { text: 'Current + ancestors', value: 'ancestor' },
+            { text: 'Current + descendants', value: 'descendant' },
+            { text: 'Current + ancestors + descendants', value: 'all' }
           ]
         }
       ]
