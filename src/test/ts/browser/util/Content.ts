@@ -1,6 +1,6 @@
 import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
 import { EnhancedListStyle } from 'src/main/ts/core/FormatTypes';
-import { styleIsUL, isZeroPadding } from 'src/main/ts/core/FormatUtils';
+import { isStyleUL, isZeroPadding } from 'src/main/ts/core/FormatUtils';
 
 const initialContentSimple = ['<ul>', '<li>&nbsp;</li>', '</ul>'].join('\n');
 
@@ -27,7 +27,7 @@ const initialContentNested = [
 ].join('\n');
 
 const getStyledContent = (style: EnhancedListStyle): string => {
-  const listTag = styleIsUL(style) ? 'ul' : 'ol';
+  const listTag = isStyleUL(style) ? 'ul' : 'ol';
   const styleAttr = ` style="list-style-type: ${style};"`;
 
   return [`<${listTag}${styleAttr}>`, '<li>&nbsp;</li>', `</${listTag}>`].join(

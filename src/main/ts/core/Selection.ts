@@ -4,7 +4,7 @@ import { SugarElement, SelectorFilter } from '@ephox/sugar';
 import {
   EnhancedListStyle,
   ListElement,
-  typeIsEnhancedListStyle
+  isTypeEnhancedListStyle
 } from './FormatTypes';
 import { getDomElements } from './Utils';
 
@@ -39,7 +39,7 @@ const getStyleFromList = (
     list,
     'list-style-type'
   );
-  return typeIsEnhancedListStyle(listStyle) ? listStyle : 'disc';
+  return isTypeEnhancedListStyle(listStyle) ? listStyle : 'disc';
 };
 
 export {

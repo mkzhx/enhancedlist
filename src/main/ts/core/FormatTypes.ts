@@ -13,7 +13,7 @@ const enhancedListStyles = [
 ];
 type EnhancedListStyle = typeof enhancedListStyles[number];
 
-const typeIsEnhancedListStyle = (str: string): boolean =>
+const isTypeEnhancedListStyle = (str: string): boolean =>
   Arr.contains(enhancedListStyles, str);
 
 interface ListFormat {
@@ -33,5 +33,5 @@ export {
   ListElement,
   scopes,
   Scope,
-  typeIsEnhancedListStyle
+  isTypeEnhancedListStyle
 };
