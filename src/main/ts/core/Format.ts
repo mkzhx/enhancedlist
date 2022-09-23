@@ -20,10 +20,10 @@ const formatList = (
     insertList(editor, isUnordered, format);
   } else {
     // list in selection
-    const scopeInfo = getScopeInformation(scope, list);
-    applyListItemPadding(editor, format.padding, scopeInfo.targets);
+    const { targets, start, end } = getScopeInformation(scope, list);
+    applyListItemPadding(editor, format.padding, targets);
 
-    selectLists(editor, scopeInfo.start, scopeInfo.end);
+    selectLists(editor, start, end);
     applyListStyle(editor, isUnordered, format.style);
   }
 };
