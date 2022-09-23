@@ -18,8 +18,8 @@ const createListRange = (
   end: ListElement
 ): Range => {
   const range = editor.dom.createRng();
-  range.setStart(start, 0);
-  range.setEnd(end, 0);
+  range.setStartBefore(start);
+  range.setEndAfter(end);
   return range;
 };
 
