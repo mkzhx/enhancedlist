@@ -1,6 +1,6 @@
 import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
 import { EnhancedListStyle } from 'src/main/ts/core/FormatTypes';
-import { isStyleUL, isZeroPadding } from 'src/main/ts/core/FormatUtils';
+import { isStyleUL, isPaddingZero } from 'src/main/ts/core/FormatUtils';
 
 const initialContentSimple = ['<ul>', '<li>&nbsp;</li>', '</ul>'].join('\n');
 
@@ -39,7 +39,7 @@ const getPaddedContent = (padding: string): string =>
   [
     `<ul style="list-style-type: disc;">`,
     `<li${
-      isZeroPadding(padding) ? '' : ` style="padding-left: ${padding};"`
+      isPaddingZero(padding) ? '' : ` style="padding-left: ${padding};"`
     }>&nbsp;</li>`,
     '</ul>'
   ].join('\n');

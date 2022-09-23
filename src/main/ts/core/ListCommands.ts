@@ -1,6 +1,6 @@
 import { Editor } from 'tinymce';
 import { EnhancedListStyle, ListFormat } from './FormatTypes';
-import { isZeroPadding } from './FormatUtils';
+import { isPaddingZero } from './FormatUtils';
 
 const insertList = (
   editor: Editor,
@@ -12,7 +12,7 @@ const insertList = (
     false,
     {
       'list-style-type': format.style,
-      'list-item-attributes': isZeroPadding(format.padding)
+      'list-item-attributes': isPaddingZero(format.padding)
         ? {}
         : { style: `padding-left: ${format.padding};` }
     }

@@ -1,7 +1,7 @@
 import { Arr } from '@ephox/katamari';
 import { Editor } from 'tinymce';
 import { ListElement } from './FormatTypes';
-import { isZeroPadding } from './FormatUtils';
+import { isPaddingZero } from './FormatUtils';
 import { getLiElementsFromList } from './Selection';
 
 const applyListItemPadding = (
@@ -13,7 +13,7 @@ const applyListItemPadding = (
   editor.dom.setStyle(
     targetListitems,
     'padding-left',
-    isZeroPadding(padding) ? null : padding
+    isPaddingZero(padding) ? null : padding
   );
 };
 
