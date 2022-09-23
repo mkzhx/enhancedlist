@@ -21,7 +21,6 @@ const getScopeInformation = (
     };
   }
 
-  // reverse to keep ancestor lists in outer-to-inner order
   const ancestors = getAncestorLists(currList);
   const firstAncestor = getLastOrDefault(ancestors, currList);
   if (scope === 'ancestor') {
