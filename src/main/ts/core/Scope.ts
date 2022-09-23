@@ -26,7 +26,7 @@ const getScopeInformation = (
   const firstAncestor = getLastOrDefault(ancestors, currList);
   if (scope === 'ancestor') {
     return {
-      targets: [...ancestors, currList],
+      targets: [currList, ...ancestors],
       start: firstAncestor,
       end: currList
     };
@@ -44,7 +44,7 @@ const getScopeInformation = (
 
   // scope === 'all'
   return {
-    targets: [...ancestors, currList, ...descendants],
+    targets: [currList, ...ancestors, ...descendants],
     start: firstAncestor,
     end: lastDescendant
   };
