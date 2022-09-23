@@ -61,6 +61,37 @@ describe('browser.tinymce.plugins.enhancedlist.PaddingTest', () => {
     removeContent(editor);
   });
 
+  it('Test applying padding to current scope', async () => {
+    const editor = hook.editor();
+    editor.setContent(initialContentNested);
+    TinySelections.setCursor(editor, [0, 1, 1, 0], 0);
+    await pSetEnhancedList(editor, 'disc', '20px', 'current');
+    TinyAssertions.assertContent(
+      editor,
+      [
+        '<ul>',
+        '<li>List1</li>',
+        '<li>List1',
+        '<ul style="list-style-type: disc;">',
+        '<li style="padding-left: 20px;">List2</li>',
+        '<li style="padding-left: 20px;">List2',
+        '<ol style="list-style-type: lower-greek;">',
+        '<li>List3</li>',
+        '<li>List3',
+        '<ul style="list-style-type: circle;">',
+        '<li>List4</li>',
+        '<li>List4</li>',
+        '</ul>',
+        '</li>',
+        '</ol>',
+        '</li>',
+        '</ul>',
+        '</li>',
+        '</ul>'
+      ].join('\n')
+    );
+  });
+
   it('Test applying padding to ancestor scope', async () => {
     const editor = hook.editor();
     editor.setContent(initialContentNested);
