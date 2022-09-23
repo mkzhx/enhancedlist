@@ -31,7 +31,6 @@ export {
   EnhancedListStyle,
   ListFormat,
   ListElement,
-  scopes,
   Scope,
   isTypeEnhancedListStyle
 };
