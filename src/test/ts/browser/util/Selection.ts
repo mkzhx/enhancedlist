@@ -1,5 +1,5 @@
 import { TinySelections } from '@ephox/mcagar';
-import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
+import { Editor } from 'tinymce';
 
 const setCursorToStart = (editor: Editor): void =>
   TinySelections.setCursor(editor, [0], 0);

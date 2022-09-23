@@ -1,7 +1,6 @@
 import { Arr } from '@ephox/katamari';
 import { TinyAssertions, TinyUiActions } from '@ephox/mcagar';
-import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
-import { removeContent } from './util/Content';
+import { Editor } from 'tinymce';
 import { editorSetup } from './util/Setup';
 
 describe('browser.tinymce.plugins.enhancedlist.ButtonTest', () => {
@@ -30,7 +29,7 @@ describe('browser.tinymce.plugins.enhancedlist.ButtonTest', () => {
       editor,
       ['<ul>', '<li>&nbsp;</li>', '</ul>'].join('\n')
     );
-    removeContent(editor);
+    editor.resetContent();
   });
 
   Arr.map(['circle', 'square'], (e, idx) => {
@@ -49,7 +48,7 @@ describe('browser.tinymce.plugins.enhancedlist.ButtonTest', () => {
           '</ul>'
         ].join('\n')
       );
-      removeContent(editor);
+      editor.resetContent();
     });
   });
 
@@ -83,7 +82,7 @@ describe('browser.tinymce.plugins.enhancedlist.ButtonTest', () => {
             '</ol>'
           ].join('\n')
         );
-        removeContent(editor);
+        editor.resetContent();
       });
     }
   );

@@ -1,10 +1,9 @@
 import { TinyAssertions, TinySelections } from '@ephox/mcagar';
-import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
+import { Editor } from 'tinymce';
 import {
   getPaddedContent,
   initialContentNested,
-  initialContentSimple,
-  removeContent
+  initialContentSimple
 } from './util/Content';
 import { pSetEnhancedList } from './util/Dialog';
 import { setCursorToFirstListItem, setCursorToStart } from './util/Selection';
@@ -40,25 +39,25 @@ describe('browser.tinymce.plugins.enhancedlist.PaddingTest', () => {
   it('Test inserting list with non-zero padding', async () => {
     const editor = hook.editor();
     await testInsertPadding(editor, '20px');
-    removeContent(editor);
+    editor.resetContent();
   });
 
   it('Test inserting list with zero padding', async () => {
     const editor = hook.editor();
     await testInsertPadding(editor, '0px');
-    removeContent(editor);
+    editor.resetContent();
   });
 
   it('Test applying non-zero padding to list', async () => {
     const editor = hook.editor();
     await testApplyPadding(editor, '20px');
-    removeContent(editor);
+    editor.resetContent();
   });
 
   it('Test applying zero padding to list', async () => {
     const editor = hook.editor();
     await testApplyPadding(editor, '0px');
-    removeContent(editor);
+    editor.resetContent();
   });
 
   it('Test applying padding to current scope', async () => {

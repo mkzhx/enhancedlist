@@ -1,4 +1,3 @@
-import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
 import { EnhancedListStyle } from 'src/main/ts/core/FormatTypes';
 import { isStyleUL, isPaddingZero } from 'src/main/ts/core/FormatUtils';
 
@@ -44,12 +43,9 @@ const getPaddedContent = (padding: string): string =>
     '</ul>'
   ].join('\n');
 
-const removeContent = (editor: Editor): void => editor.setContent('');
-
 export {
   initialContentSimple,
   initialContentNested,
   getStyledContent,
-  getPaddedContent,
-  removeContent
+  getPaddedContent
 };

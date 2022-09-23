@@ -5,7 +5,6 @@ import {
   getStyledContent,
   initialContentNested,
   initialContentSimple,
-  removeContent
 } from './util/Content';
 import { pSetEnhancedList } from './util/Dialog';
 import { setCursorToFirstListItem, setCursorToStart } from './util/Selection';
@@ -21,7 +20,7 @@ describe('browser.tinymce.plugins.enhancedlist.StyleTest', () => {
       setCursorToStart(editor);
       await pSetEnhancedList(editor, listStyle, '0px', 'current');
       TinyAssertions.assertContent(editor, getStyledContent(listStyle));
-      removeContent(editor);
+      editor.resetContent();
     });
   });
 

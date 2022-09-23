@@ -1,6 +1,6 @@
 import { UiControls } from '@ephox/agar';
 import { TinyUiActions } from '@ephox/mcagar';
-import { Editor } from '@ephox/mcagar/lib/main/ts/ephox/mcagar/alien/EditorTypes';
+import { Editor } from 'tinymce';
 import { EnhancedListStyle, Scope } from 'src/main/ts/core/FormatTypes';
 import { SugarElement } from '@ephox/sugar';
 
