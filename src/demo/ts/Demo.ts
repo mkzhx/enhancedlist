@@ -8,6 +8,6 @@ Plugin();
 
 tinymce.init({
   selector: 'textarea.tinymce',
-  plugins: 'code enhancedlist',
+  plugins: 'code enhancedlist lists advlist',
   toolbar: 'enhancedlist'
 });
